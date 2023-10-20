@@ -9,13 +9,22 @@ with st.sidebar:
     st.subheader('This is the basis for one of the recruitment processes')
     st.markdown(
         """
-            sumber data: 
-            > Jumlah Perjalanan Wisatawan Nasional (Perjalanan), 
-            Jumlah Kunjungan Wisatawan Mancanegara per bulan ke Indonesia Menurut Pintu Masuk 
-            By Badan Pusat Statistika (BPS),
-            > Indonesia Tourism Destination By Kaggle
+            **Let's connect on linkedin**
+            https://www.linkedin.com/in/salma-eka-y/
+        **sumber data:**
+        1. mediakeuangan.kemenkeu.go.id
+        > Kian Melesat di 2023, Pariwisata Indonesia Bersiap Menuju Level Prapandemi
+        2. bps
+        > Jumlah Perjalanan Wisatawan Nasional (Perjalanan), 
+        Jumlah Kunjungan Wisatawan Mancanegara per bulan ke Indonesia Menurut Pintu Masuk 
+        3. Kaggle
+        > Indonesia Tourism Destination 
+            
+           
         """
+
     )
+
 
 st.header("Destinasi Pariwisata Indonesia: 5 Kota untuk Dikunjungi")
 "by Salma Eka Yudanti (salmaey2022@gmail.com)"
@@ -32,8 +41,6 @@ st.markdown('<br>', unsafe_allow_html=True)
 image = Image.open('o_1b69p1552art15981haoujc1hs9a.jpg')
 st.image(image, caption='scr: google.com')
 
-st.markdown('<div style="text-align:justify;font-size:18px;"></div>',
-            unsafe_allow_html=True)
 
 df_jumlahwisatawan = pd.read_csv('jumlah_wisatawan.csv')
 df_wisatawan = pd.read_csv('nasionaldanmanca.csv')
@@ -81,6 +88,16 @@ st.altair_chart(combined_chart, use_container_width=True)
 # filter ScatterPlot to City
 df_turisWithId = pd.read_csv('tourism_with_id.csv')
 
+st.markdown('<div style="text-align:justify;font-size:18px;">Indonesia memiliki banyak kota yang memiliki potensi wisata menarik.\
+    Namun, jika mencari rekomendasi kota-kota terbaik untuk dikunjungi, maka Destinasi Pariwisata Indonesia: 5 Kota untuk \
+        Dikunjungi mungkin bisa menjadi referensi. Lima kota terbaik di Indonesia yang menawarkan berbagai tempat wisata menarik, \
+            yaitu <font color=orange>Jakarta, Bandung, Yogyakarta, Semarang, dan Surabaya</font>. Setiap kota memiliki daya tariknya sendiri-sendiri, mulai\
+                dari keindahan alam hingga kekayaan budaya. Misalnya, Yogyakarta memiliki sejarah dan tradisi yang kaya, sedangkan\
+                    Bandung menawarkan berbagai tempat wisata menarik seperti Gunung Tangkuban Perahu dan Kawah Putih. Jakarta sendiri\
+                        memiliki banyak tempat wisata menarik seperti Monumen Nasional (Monas) dan Taman Mini Indonesia Indah. \
+                            Semua kota tersebut dapat menjadi pilihan yang tepat untuk liburan selanjutnya.</div>',
+            unsafe_allow_html=True)
+
 
 @st.cache_resource
 def load_data():
@@ -109,12 +126,16 @@ scatter = px.scatter(filtered_dfKota, x='Rating', y='Price',
 
 st.plotly_chart(scatter, use_container_width=True)
 
+st.markdown('<div style="text-align:justify;font-size:18px;">Scatterplot tersebut menunjukkan hubungan antara harga dan rating dari lima kota di Indonesia,\
+        yaitu Jakarta, Bandung, Yogyakarta, Semarang, dan Surabaya. Scatterplot ini menunjukkan hubungan negatif antara harga dan rating, yang berarti bahwa semakin tinggi rating, semakin rendah harga. Scatterplot juga menunjukkan bahwa Yogyakarta memiliki rating tertinggi dan harga terendah.</div>',
+            unsafe_allow_html=True)
+
 # Bar Chart
 category_counts = df_turisWithId['Category'].value_counts().reset_index()
 category_counts.columns = ['Category', 'Count']
 
 # Buat plot batang
-st.header('Jumlah Kategori Pariwisata di 5 Kota')
+st.header('Jumlah Kategori Destinasi di 5 Kota')
 lap = px.bar(category_counts, x="Category", y="Count",
              color="Category")
 lap.update_layout(
@@ -124,6 +145,11 @@ lap.update_layout(
 )
 
 st.plotly_chart(lap, use_container_width=True)
+
+st.markdown('<div style="text-align:justify;font-size:18px;">Bar chart tersebut menunjukkan jumlah kategori destinasi yang berbeda.\
+    Kategori-kategori tersebut adalah “Taman Hiburan”, “Budaya”, Bahari, “Cagar Alam”, “Tempat Ibadah”, dan “Pusat Perbelanjaan”.\
+        Jumlah tertinggi adalah “Taman Hiburan” diangka 135, dan jumlah terendah adalah “Pusat Perbelanjaan” diangka 15.</div>',
+            unsafe_allow_html=True)
 
 # FILTER
 # Membaca data dari file 'tourism_with_id.csv'
@@ -154,3 +180,6 @@ if st.button("Tampilkan Filter"):
                                     'Place_Name', 'Description', 'Price', 'Rating']])
     else:
         st.info('Tidak ada rekomendasi yang sesuai dengan kriteria yang dipilih.')
+
+st.markdown('<div style="text-align:justify;font-size:18px;">Dengan filter tersebut, kita dapat membandingkan jumlah Kota yang berbeda dengan membandingkan jumlah kategori destinasi yang berbeda yang tersedia di tempat lain.</div>',
+            unsafe_allow_html=True)
