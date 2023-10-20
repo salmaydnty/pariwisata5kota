@@ -4,6 +4,12 @@ import pandas as pd
 import plotly.express as px
 import altair as alt
 
+st.set_page_config(
+    page_title="Destinasi Pariwisata Indonesia: 5 Kota untuk Dikunjungi",
+    page_icon="🏞️",
+    layout="centered"
+)
+
 with st.sidebar:
     st.title('**Panelist - Dashboard Review**')
     st.subheader('This is the basis for one of the recruitment processes')
